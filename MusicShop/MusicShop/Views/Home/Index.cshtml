@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MusicShop</title>
+
+    <link rel="stylesheet" href="~/css/simple-adaptive-slider.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/HomeBody.css" asp-append-version="true" />
+
+</head>
+<body>
+
+    <div class="sim-slider">
+        <ul class="sim-slider-list">
+            <li><img height="975" src="http://pvbk.spb.ru/inc/slider/imgs/no-image.gif" alt="screen" h></li> <!-- это экран -->
+          
+            <li class="sim-slider-element">
+                <div id="tekst_sverhu_kartinki">
+                    <img height="1000" src="~/images/main9.jpg" alt="0">
+                    <div class="tekst_sverhu_kartinki">
+                        <h2 class="top_text">If You Know a True Value of Sound,</h2>
+                        <h3 class="mid_text">you’ve got to the right place!</h3>
+                        <p class="bottom_text">Welcome to the friendliest and the biggest retro vinyl record shop.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="sim-slider-element">
+                <div id="tekst_sverhu_kartinki">
+                    <img height="1000" src="~/images/main2.jpg" alt="1">
+                    <div class="tekst_sverhu_kartinki">
+                        <h2 class="top_text" >Enjoy a Huge of Range of the Items</h2>
+                        <h3 class="mid_text">that are offered here!</h3>
+                        <p class="bottom_text">Welcome to the friendliest and the biggest retro vinyl record shop.</p>     
+                    </div>
+                </div>
+            </li>
+            <li class="sim-slider-element">
+                <div id="tekst_sverhu_kartinki">
+                    <img height="1000" src="~/images/main8.jpg" alt="2">
+                    <div class="tekst_sverhu_kartinki">
+                        <h2 class="top_text">Music is Our Lifestyle and Our Total Passion.</h2>
+                        <h3 class="mid_text">Just as it is for you, we suppose.</h3>
+                        <p class="bottom_text">Welcome to the friendliest and the biggest retro vinyl record shop.</p>
+                    </div>
+        
+                </div>
+            </li>
+
+        </ul>
+        <form asp-action="Index" asp-controller="Product">
+            <button class="shopButt">
+                SHOP NOW
+            </button>
+        </form>
+        <img src="C:\Users\rvz03\Desktop\img\aero.png" />
+
+        
+        <div class="sim-slider-arrow-left"></div>
+        <div class="sim-slider-arrow-right"></div>
+        <div class="sim-slider-dots"></div>
+
+    </div>
+
+    <div style="display:flex; justify-content:space-between;">
+       
+        <a asp-action="Index" class="groupLogo" asp-controller="Product">
+            <img class="imgAnim" src="~/images/groupsLogo/aero.png" alt="mama">
+        </a>
+        <a asp-action="Index" class="groupLogo" asp-controller="Author">
+            <img class="imgAnim" src="~/images/groupsLogo/KISS.png">
+        </a>           
+        <a asp-action="Index" class="groupLogo" asp-controller="Product">
+            <img class="imgAnim" src="~/images/groupsLogo/metallica.png">
+        </a>
+        <a asp-action="Index" class="groupLogo" asp-controller="Product">
+            <img class="imgAnim" src="~/images/groupsLogo/muse.png">
+        </a>           
+        <a asp-action="Index" style="width:200px; padding:10px;" asp-controller="Product">
+            <img class="imgAnim" src="~/images/groupsLogo/sexpestols.png">
+        </a>
+        <a asp-action="Index" style="width:200px; padding:10px;" asp-controller="Product">
+            <img class="imgAnim" src="~/images/groupsLogo/nirvana.png">
+        </a>
+
+
+    </div>
+    <script src="~/js/simple-adaptive-slider.js" asp-append-version="true"></script>
+
+</body>
+</html>
+

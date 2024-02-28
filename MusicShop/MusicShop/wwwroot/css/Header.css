@@ -1,0 +1,63 @@
+﻿
+.navigation_links {
+    font-size: 16px;
+    margin: 0 5px 0;
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navigation_links:hover {
+    color: red;
+    transition: 0.5s;
+}
+
+.leftLinks {
+    position: relative;
+    left: 70%;
+    bottom: 27px;
+    padding: 0;
+    width:28%;
+    display:flex;
+    justify-content: space-between;
+
+}
+.Logo {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+    letter-spacing: 1.75px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+
+/* Style the header */
+
+.header {
+    padding: 10px 0 0 5px;
+    z-index: 1000;
+    background:white;
+ 
+}
+
+/* Page content */
+.content {
+    padding: 16px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+    padding-top: 102px;
+}

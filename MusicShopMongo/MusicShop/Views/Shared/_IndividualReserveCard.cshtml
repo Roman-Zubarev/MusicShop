@@ -1,0 +1,31 @@
+﻿@model MusicShop.Models.ReservedProduct
+
+<head>
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+
+</head>
+    <div style="margin: 17px 0 0 15px;  width:250px">
+        <a asp-action="ProductCard" asp-controller="Product" asp-route-id="@Model.Product.Id"> 
+            <img src="@Url.Content(@WC.ImagePath + @Model.Product.Image)" class="card-img" height="250" width="250" alt="Card image cap">
+            <div>
+                <div style="font-size:21px;">@Model.Product.Name</div>
+                <div style="display:flex">
+                    <div style="font-size:23px; font-weight:600">$</div>
+                    <div style="font-size:23px; font-weight:600" id="totalPrice">
+                        @Model.Product.Price
+                    </div>
+                </div>
+              <div>Reserved until @Model.ExpirationDate</div>
+            </div>
+
+            <div style="display:flex">
+            <form asp-action="DeleteReserve" asp-controller="Reserve" asp-route-id="@Model.Id" method="post">
+                    <input value="Delete" type="submit" class="registerButt" style="margin:15px 15px 0 0; width:60px; " />
+            </form>
+            </div>
+        </a>
+    </div>
+
+
+

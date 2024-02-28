@@ -1,0 +1,124 @@
+﻿@model Author
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ProductCard.css" asp-append-version="true" />
+
+        <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1"></div>
+        <div class="item2">
+            <div style="display:flex;">
+
+                <div style="margin-right:20px">
+                    <div>
+                        <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> <a asp-action="Index" class="history_links" asp-controller="Author">Authors</a>  <img class="chevron" src="~/images/chevron-right.svg" />
+                        <span class="history_links">@Model.Name</span>
+                    </div>           
+
+                    <img height="470" width="510" style="margin: 10px" src="@Url.Content(WC.ImagePath + Model.Image)" />
+               
+                </div>
+
+                <div style="margin:8px 0 0 20px">
+                    <div class="productName" style="font-size:30px">@Model.Name</div>
+                    <div class="descValue"><span class="descOpt" style="font-size:25px">Country:</span> @Model.Country</div>
+          
+
+
+@*                     <form asp-action="Index" asp-controller="Product" style="margin-top:55%">
+                        <button class="shopButt" >
+                            ADD TO CART
+                        </button>
+                    </form> *@
+
+
+                    @if (BDWorks.IsAdmin)
+                    {
+                        <form asp-action="Delete" asp-controller="Author" asp-route-id="@Model.Id" method="post">
+                            <button class="shopButt" id="del" style="margin-top:15px" >
+                                DELETE
+                            </button>
+                            @if (ViewBag.Message != null)
+                            {
+                                <div style="color:red">@ViewBag.Message</div>
+                            }
+                        </form>
+
+                        <form asp-action="Edit" method="get" asp-controller="Author" asp-route-id="@Model.Id">
+                            <button class="shopButt" style="margin-top:15px">
+                                EDIT
+                            </button>
+                        </form>
+                    }
+
+
+                    <form asp-action="Index" asp-controller="Author">
+                        <button class="shopButt" style="margin-top:200px">
+                            BACK
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <button class="switchButt" id="button1" onclick="openbox('box1',1);">BIOGRAPHY</button>
+
+            <div>@Model.Biography</div>
+            <br />
+            <br />
+
+            <br />
+            @* <div class="interes">YOUR MAY ALSO BE INTERESTED IN FOLLOWING AUTHORS</div>
+
+            <div style="display:flex; justify-content:space-around;">
+                @foreach (var item in await BDWorks.GetNRandomAuthors(4))
+                {
+                    <partial name="_IndividualAuthor" model="item" />
+
+               
+                }
+            </div> *@
+        </div>
+        <div class="item3"></div>
+
+       
+    </section>
+    
+</body>
+</html>
+
+@section Scripts{
+    <script>
+        function openbox(id, selectedButton) {
+            if (selectedButton === 1) {
+                document.getElementById("button1").disabled = true;
+                document.getElementById("button2").disabled = false;
+            } 
+            else {
+                document.getElementById("button2").disabled = true;
+                document.getElementById("button1").disabled = false;
+            }
+            var all = document.querySelectorAll(".block-of-text");
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].id == id) {
+                    all[i].style.display = (all[i].style.display == 'none') ? 'block' : 'none';
+                } else {
+                    all[i].style.display = 'none';
+                }
+            }
+        }
+
+      
+    </script>
+
+}
+
+
+

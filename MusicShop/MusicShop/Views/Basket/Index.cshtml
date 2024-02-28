@@ -1,0 +1,184 @@
+﻿@model MusicShop.Models.ViewModels.BasketVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/inputs.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1" style="width: 15%;"> </div>
+        <div class="item2" style="width: 62%;">
+            <div style="margin-top:10px">
+                <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> Basket
+
+            </div>
+@*             <div style="margin-left:47%; margin-top:25px;  font-weight:bold; font-size:25px; letter-spacing:1px;">Authors</div> *@
+            <div class="productContainer" style="width:100%; ">
+            @foreach (var item in Model.Basket)
+            {
+                <partial name="_IndividualBasketCard" model="item" />
+
+            }
+            </div>
+        </div>
+        <div class="item3" style="width: 20%;">
+ 
+
+            <div style="margin-left:28%; margin-top:40px;  font-weight:bold; font-size:25px; letter-spacing:1px; ">Delivery</div>
+
+            <form asp-action="MakeOrder" method="post"  asp-controller="Basket" style="margin-right:50px">
+      
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.Country"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.Country" />
+                        <span asp-validation-for="@Model.Order.Country" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.FirstName">First Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.FirstName" />
+                        <span asp-validation-for="@Model.Order.FirstName" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.LastName">Last Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.LastName" />
+                        <span asp-validation-for="@Model.Order.LastName" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.Address"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.Address" />
+                        <span asp-validation-for="@Model.Order.Address" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.PostalCode">Postal Code</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.PostalCode" />
+                        <span asp-validation-for="@Model.Order.PostalCode" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="col-4">
+                        <label class="descOpt" asp-for="@Model.Order.City"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="@Model.Order.City" />
+                        <span asp-validation-for="@Model.Order.City" style="color:red;"></span>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <div style="margin-bottom:10px">
+                        <label class="descOpt" asp-for="@Model.Order.DeliveryMethod">Delivery Method</label>
+                    </div>
+                    <div class="select-wrapper">
+                        <div class="select-arrow-3"></div>
+                        <div class="select-arrow-3"></div>
+
+                        <select asp-for="@Model.Order.DeliveryMethod">
+
+                          
+                            <option value="Post">Post</option>
+                            <option value="Courier ">Courier</option>
+
+                            
+                        </select>
+                    </div>
+
+                </div>
+                <table style="width:100%">
+                    <tr>
+                        <td>Subtotal</td>
+                        <td id="result1">$ </td>
+                 
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td>FREE</td>
+                
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="result2">$ </td>
+                         
+                    </tr>
+                </table>
+         
+                <div style="margin-left:80px">
+                    <input type="submit" class="registerButt" style="margin-top:15px" value="BUY" /> <br />
+
+                </div>
+            </form>
+
+            </div>
+
+
+    
+    </section>
+    
+</body>
+</html>
+
+@section scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function sumQweElements() {
+            let elements = document.querySelectorAll('#totalPrice');
+            let sum = 0;
+            elements.forEach(element => {
+                sum += parseFloat(element.innerHTML);
+            });
+            document.getElementById('result1').innerHTML += sum;
+            document.getElementById('result2').innerHTML += sum;
+
+        }
+
+        window.onload = function () {
+            sumQweElements();
+        };
+    </script>
+
+}
+
+
+

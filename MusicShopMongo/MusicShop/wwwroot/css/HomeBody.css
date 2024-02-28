@@ -1,0 +1,30 @@
+﻿.groupLogo{
+    width:200px;
+    padding: 10px;
+    margin-top:25px;
+}
+
+.imgAnim {
+    transition: 0.5s;
+}
+.imgAnim:hover{
+    opacity:0.6;
+}
+
+.shopButt {
+    position: absolute;
+    top: 60%;
+    left: 45%;
+    color: white;
+    width: 10%;
+    height: 40px;
+    z-index: 100;
+    color: black;
+    transition: 0.4s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.shopButt:hover {
+    background-color: #555566;
+    color: white;
+}

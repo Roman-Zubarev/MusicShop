@@ -1,0 +1,134 @@
+﻿@model MusicShop.Models.ViewModels.StatisticsVM
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
+
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1" style="width: 10%;"><div hidden></div> </div>
+        <div class="item2" style="width: 80%; ">
+
+
+            <div style="margin:10px 0">
+                <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> Statistics
+            </div>
+
+            <div style="margin:15px 0 20px  47%; font-weight:bold; font-size:25px; letter-spacing:1px;">Statistics</div>
+
+            <div>
+
+                <table class="table">
+
+                    <tr>
+                        <th>Total products</th>
+                        <th>Total products price</th>
+                        <th>All Orders Count</th>
+                        <th>All Orders Price  </th>
+                        <th>Accepted Orders Count </th>
+                        <th>Accepted Orders Price</th>
+                        <th>Delivered Orders Count</th>
+                        <th>Delivered Orders Price</th>
+                        <th>Canceled Orders Count</th>
+                        <th>Canceled Orders Price</th>
+                        <th>Reserved Count</th>
+                        <th>Registered User Count</th>
+                    </tr>
+                    @foreach (var item in Model.StatisticsList)
+                    {
+                        <tr>
+                            <td>@item.NowProductCount</td>
+                            <td>@item.NowProductPrice</td>
+                            <td>@item.OrderCount</td>
+                            <td>@item.OrderPrice</td>
+                            <td>@item.AOrderCount</td>
+                            <td>@item.AOrderPrice</td>
+                            <td>@item.DOrderCount</td>
+                            <td>@item.DOrderPrice</td>
+                            <td>@item.COrderCount</td>
+                            <td>@item.COrderPrice</td>
+                            <td>@item.ReservedCount</td>
+                            <td>@item.RegisteredUserCount</td>
+                        </tr>
+                    }
+
+                </table>
+
+                <div style="margin-top:30px; display:flex; justify-content:space-between">
+                    <div>
+                        <div style="margin:15px 0 20px  36%; font-weight:bold; font-size:18px; letter-spacing:1px;">Top Ten Products</div>
+                        <table border="1" style=" border-collapse: collapse; width:705px">
+
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Orders Count</th>
+
+                            </tr>
+                            @foreach (var item in Model.TopTen)
+                            {
+                                <tr>
+                                    <td><a asp-action="ProductCard" class="history_links" asp-controller="Product" asp-route-id="@item.Key.Id"> @item.Key.Id </a> </td>
+                                    <td>@item.Key.Name</td>
+                                    <td>@item.Value</td>
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <div>
+                        <div style="margin:15px 0 20px  45%; font-weight:bold; font-size:18px; letter-spacing:1px;">Reserved Products</div>
+                        <table border="1" style=" border-collapse: collapse; width:705px">
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Expiration Date</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            @foreach (var item in Model.AllReservedProducts)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td> <a asp-action="ProductCard" class="history_links" asp-controller="Product" asp-route-id="@item.Product.Id"> @item.Product.Id </a></td>
+                                    <td>@item.Product.Name</td>
+                                    <td>@item.ExpirationDate</td>
+                                    <td>
+                                        <form asp-action="DeleteReserve" asp-controller="Reserve" asp-route-id="@item.Id">
+                                            <button type="submit" class="registerButt" style="margin:0; width:100px">Delete</button>
+                                        </form>
+                                    </td>
+
+
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="item3" style="width: 10%;" id="zalupa"></div>
+    </section>
+    
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,72 @@
+﻿.logInBox {
+    
+    border-top: 2px solid black;
+    border-left: 2px solid rgb(240,240,240,100);
+    border-right: 2px solid rgb(240,240,240,100);
+    border-bottom: 2px solid rgb(240,240,240,100);
+    width:550px;
+    height:250px;
+    margin-top:30px;
+}
+
+ol {
+    list-style: none;
+}
+
+ol > li {
+    padding-left: 20px;
+    position: relative;
+    margin: 10px;
+}
+
+ol > li:before {
+    content: '✔';
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+.accountName {
+    margin-top: 15px;
+    font-weight: 900;
+    font-size:18px;
+    letter-spacing: 3px;
+    line-height:20px;
+}
+
+.fieldSub{
+    font-size:14px;
+    margin:100px 0 0 50px;
+}
+
+.registerButt {
+    font-size: 15px;
+    margin-top: 50px;
+    font-weight: 700;
+    color: white;
+    width: 200px;
+    height: 40px;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    transition: 0.4s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.registerButt:hover {
+    background-color: black;
+    color: white;
+}
+
+    .registerButt:disabled {
+        background-color: black;
+        color: white;
+    }
+
+.registerFieldsName{
+    width:200px;
+    text-align:right;
+   margin-top:15px;
+}

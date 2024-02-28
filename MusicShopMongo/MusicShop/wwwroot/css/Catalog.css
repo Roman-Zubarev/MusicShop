@@ -1,0 +1,105 @@
+
+.item1 {
+    width: 19%;
+}
+.item2 {
+    width: 17%;
+}
+.item3 {
+    width: 45%;
+}
+.item4 {
+    width: 19%;
+}
+
+
+.flex-start {
+   /*   border: 1px solid ; */
+    width:1890px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.productContainer {
+    margin-left:15px;
+    flex-wrap: wrap;
+    display: flex;
+    width: 835px;
+ /*   border: 1px solid red; */
+}
+
+.collection_item {
+    font-size: 21px;
+    margin: 0 0 13px 30px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+.collection_item:hover{
+    color: red;
+   transition: 0.5s;
+}
+
+.history_links {
+    font-size: 16px;
+    margin: 0 5px 0 ;
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.history_links:hover {
+    color: red;
+    transition: 0.5s;
+}
+
+
+.chevron {
+    margin-top:2px;
+    height:12px;
+    width:15px;
+}
+
+
+
+.top_text {
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.top_text2 {
+    font-size: 38px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+div#tekst_sverhu_kartinki {
+    position: relative;
+}
+div#tekst_sverhu_kartinki2 {
+    position: relative;
+}
+
+.tekst_sverhu_kartinki {
+    position: absolute;
+    top: 39%;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.tekst_sverhu_kartinki2 {
+    position: absolute;
+    top: 37%;
+    color: white;
+    width: 100%;
+    text-align: center;
+    letter-spacing:5px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+﻿@model MusicShop.Models.Order
+
+<head>
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+
+</head>
+    <div style="margin: 17px 0 0 15px;  width:250px">
+    <a asp-action="ProductCard" asp-controller="Product" asp-route-id="@Model.Product.Id"> 
+        <img src="@Url.Content(@WC.ImagePath + @Model.Product.Image)" class="card-img" height="250" width="250" alt="Card image cap">
+        <div>
+            <div style="font-size:20px;">@Model.Product.Name</div>
+            <div style="display:flex">
+                <div style="font-size:20px; font-weight:600">$</div>
+                <div style="font-size:20px; font-weight:600" id="totalPrice">
+                    @{
+                        double totalPrice = Model.Product.Price * Model.Count;
+                    }
+                    @totalPrice
+                </div>
+                <div style="font-size:20px; font-weight:600">   (@Model.Count)</div>
+            </div>
+         
+                <div style="color:lightgreen; font-size:20px;">@Model.Status</div>
+             
+            
+        </div>
+    
+
+    </a>
+    </div>
+
+
+

@@ -1,0 +1,136 @@
+﻿* {
+    font-family: 'Montserrat', sans-serif;
+}
+.item1 {
+    width: 20%;
+}
+
+.item2 {
+    width: 60%;
+}
+
+.item3 {
+    width: 20%;
+ 
+}
+.chevron{
+    width:10px;
+}
+
+.flex-start {
+    width: 1890px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.history_links {
+    font-size: 16px;
+    font-weight:400;
+    margin: 0 5px 0;
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    cursor:pointer;
+}
+
+.history_links:hover {
+    color: red;
+    transition: 0.5s;
+}
+
+.productName{
+    margin-top:25px;
+    font-size:20px;
+    line-height:20px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.descOpt {
+    font-weight: 700;
+
+}
+.descValue{
+    margin-top:15px;
+}
+
+.price {
+    margin-top:30px;
+    font-size: 30px;
+    font-weight:900;
+}
+
+.shopButt {
+    font-size: 15px;
+    margin-top: 50px;
+    font-weight: 700;
+    color: white;
+    width: 200px;
+    height: 40px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .shopButt:hover {
+        background-color: #ff1d46;
+        color: white;
+    }
+
+
+.switchButt { 
+    margin: 0 0 20px 5px;
+    font-size:15px;
+    font-weight:700;
+    margin-top: 50px;
+    width: 200px;
+    height: 40px;
+    color: black;
+    border: solid white 1px;
+    transition:0.5s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.switchButt:disabled {
+    background: #ff1d46;
+    color: white;
+}
+
+td{
+    border:1px solid;
+}
+tr {
+    border: 1px solid;
+}
+th {
+    border: 1px solid;
+}
+.switchButt:hover {
+    border: 1.5px solid #ff1d46;
+}
+
+.interes{
+    margin-left:20%;
+    letter-spacing:1px;
+    font-size:22px;
+    font-weight:900;
+ 
+}
+
+.backLink {
+    font-size: 15px;
+ 
+    font-weight: 700;
+    color: white;
+    color: black;
+    text-decoration:none;
+    transition: 0.4s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.backLink:hover {
+    background-color: #ff1d46;
+    color: white;
+}

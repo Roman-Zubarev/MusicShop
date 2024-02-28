@@ -1,0 +1,239 @@
+﻿@model User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ProductCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/inputs.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1"></div>
+        <div class="item2">
+            <div>
+                <a asp-action="Index" class="history_links" style="margin:0" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> <span class="history_links">Account</span>
+            </div>
+            <div class="accountName">ACCOUNT</div>
+            @if (ViewBag.Message != null)
+            {
+                <p style="color:red">@ViewBag.Message</p>
+            }
+            <div style="display:flex;" id="block1">
+
+                <div style="margin-right:20px">
+
+                     <div class="logInBox">
+                            <div style="margin:10px 0 0 50px; font-size:13px">New here?</div>
+                            <div style="margin:10px 0 0 50px; font-size:16px">Registration is free and easy!</div>
+
+                            <ol>
+                                <li>Faster checkout</li>
+                                <li>
+                                    Save multiple shipping addresses
+                                </li>
+                                <li>
+                                    View and track orders and more
+                                </li>
+
+                            </ol>
+
+                            <input type="submit" class="registerButt" style="margin:15px 0 0 50px" onclick="ShowRegister()" value="CREATE AN ACCOUNT" />
+                      
+
+                        </div>
+
+                </div>
+                <form method="post" asp-action="Login" enctype="multipart/form-data">
+                    @* <input asp-for="Id" hidden /> *@
+
+                    <div class="logInBox">
+                        <div style="margin:10px 0 0 50px; font-size:13px">Already registered?</div>
+                        <div>
+                            <div style="margin-top:10px">
+                                <label class="fieldSub" asp-for="Email">Email addres</label>
+                            </div>
+                            <div style="margin:10px 0 0 50px">
+                                <input asp-for="Email" style="margin:0; height:35px" />
+                                <span asp-validation-for="Email" style="color:red;"></span>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <div>
+                                <label class="fieldSub" asp-for="Password">Password</label>
+                            </div>
+                            <div style="margin:10px 0 0 50px">
+                                <input type="password" asp-for="Password" style="margin:0; height:35px" />
+                            </div>
+
+                        </div>
+                             <div style="display:flex; margin-left:50px;">
+                                <input type="submit" class="registerButt" style="margin-top:15px" value="SIGN IN" />
+                                <a style="margin:25px 0 0 15px" onclick="showBlock()" class="history_links"> Forgot your password?</a>
+                             </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div style="display:none;" id="block2">
+
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="logInBox " style="width:1125px; height:500px" >
+                        <div style="display:flex; ">
+                            <div style="margin:10px 0 0 50px; font-size:13px;width:200px">Create an account</div>
+                            <a style="margin:11px 0 0 68%;font-size:12px; font-weight:700" onclick="HideRegister()" class="history_links">CLOSE</a>
+                        </div>
+                        <div style="margin-left:15%">
+
+                            <div style="display:flex;">
+                                <div class="registerFieldsName">
+                                    <label class="fieldSub" asp-for="FirstName">Fist Name</label>
+                                </div>
+                                <div style="margin:10px 0 0 50px">
+                                    <input asp-for="FirstName" style="margin:0; height:35px" />
+                                    <span asp-validation-for="FirstName" style="color:red;"></span>
+
+                                </div>
+
+                            </div>
+                            <div style="display:flex;">
+                                <div class="registerFieldsName">
+                                    <label class="fieldSub" asp-for="LastName">Last Name</label>
+                                </div>
+                                <div style="margin:10px 0 0 50px">
+                                    <input asp-for="LastName" style="margin:0; height:35px" />
+                                    <span asp-validation-for="LastName" style="color:red;"></span>
+
+                                </div>
+
+                            </div>
+                            <div style="display:flex;">
+                                <div class="registerFieldsName">
+                                    <label class="fieldSub" asp-for="Email">Email addres</label>
+                                </div>
+                                <div style="margin:10px 0 0 50px">
+                                    <input id="emailBlock" asp-for="Email" style="margin:0; height:35px" />
+                                    <span asp-validation-for="Email" style="color:red;"></span>
+
+                                </div>
+
+                            </div>
+                            <div style="display:flex;">
+                                <div class="registerFieldsName">
+                                    <label class="fieldSub">Password</label>
+                                </div>
+                                <div style="margin:10px 0 0 50px">
+                                    <input type="password" asp-for="Password" style="margin:0; height:35px; width:237px" />
+                                    <span asp-validation-for="Password" style="color:red;"></span>
+
+                                </div>
+
+                            </div>
+                            
+                        </div>
+
+                        <div style="display:flex;margin:15px 0 0 19%">
+
+                            <div style="margin:15px 0 0 40px">
+                                <input type="submit"  class="registerButt" style="margin:15px 0 0 162px;width:100px" value="SUBMIT" />
+
+                                <a class="history_links" style="margin:15px 0 0 30px;" value="Back" onclick="HideRegister()">Cancel</a>
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </form>
+
+       
+           
+            </div>
+
+            <div class="logInBox" style="width:100%; display:none" id="forgotPasswordBox">
+                <div style="margin:20px 0 0 50px; font-size:13px">Reset Password</div>
+                <div style="margin:10px 0 0 50px; font-size:16px">We will send you an email to reset your password</div>
+                <form>
+
+                    <div style="display:flex;margin:15px 0 0 30%">
+                    
+                        <div style="margin:25px 0 0 50px; font-size:16px">Email Address</div>
+
+                        <div style="margin:15px 0 0 40px">
+                            <input asp-for="Email" style="margin:0; height:35px" />
+                            <span asp-validation-for="Email" style="color:red;"></span>
+
+                        </div>
+                    </div>
+
+                    <div style="display:flex;margin:15px 0 0 30%">
+
+                        <div style="margin:15px 0 0 40px">
+                            <input type="submit" class="registerButt" style="margin:15px 0 0 162px;width:100px" value="SUBMIT" />
+
+                            <a class="history_links" style="margin:15px 0 0 30px;" value="Back" onclick="hideBlock()">Cancel</a>
+
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="item3"></div>
+    </section>
+
+</body>
+</html>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    <script>
+
+        function showBlock() {
+            var object = document.getElementById('forgotPasswordBox');
+            object.style.display = 'block';
+        }
+
+        function hideBlock() {
+            var object = document.getElementById('forgotPasswordBox');
+            object.style.display = 'none';
+
+        }
+
+        function ShowRegister() {
+            hideBlock();
+            var object = document.getElementById('block1');
+            object.style.display = 'none';
+
+            var object2 = document.getElementById('block2');
+            object2.style.display = 'flex';
+
+        }
+
+        function HideRegister() {
+            var object = document.getElementById('block2');
+            object.style.display = 'none';
+
+            var object2 = document.getElementById('block1');
+            object2.style.display = 'flex';
+        }
+
+ 
+    </script>
+
+}
+
+

@@ -1,0 +1,73 @@
+﻿@model List<Order>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1" style="width: 20%;"> </div>
+        <div class="item2" style="width: 60%; ">
+
+
+            <div style="margin:10px 30px">
+                <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> Orders
+
+            </div>
+            <div style="display:flex">
+                <form asp-action="Index" asp-controller="Order" asp-route-id="@BDWorks.CurrentUser.Id" asp-route-status="Accepted" method="post">
+                    <button id="acceptBut" type="submit" class="registerButt" style="margin:15px 0 0 30px; width:100px; ">Accepted</button>
+                </form>
+
+                <form asp-action="Index" asp-controller="Order" asp-route-id="@BDWorks.CurrentUser.Id" asp-route-status="Delivered" method="post">
+                    <button id="delivBut" type="submit" class="registerButt" style="margin:15px 0 0 15px; width:100px">Delivered</button>
+
+                </form>
+
+                <form asp-action="Index" asp-controller="Order" asp-route-id="@BDWorks.CurrentUser.Id" asp-route-status="Canceled" method="post">
+                    <button id="canslBut" type="submit" class="registerButt" style="margin:15px 0 0 15px; width:100px">Canceled</button>
+
+                </form>
+            </div>
+            <div style="margin-left:47%; margin-top:10px;  font-weight:bold; font-size:25px; letter-spacing:1px;">Orders</div>
+            <div class="productContainer" style="width:100%;">
+            @foreach (var item in Model)
+            {
+                <partial name="_IndividualOrderCard" model="item" />
+
+            }
+            </div>
+        </div>
+        <div class="item3" style="width: 15%;"></div>
+    </section>
+    
+</body>
+</html>
+
+@section scripts{
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var status = urlParams.get('status');
+
+        switch (status) {
+            case 'Accepted':
+                document.getElementById('acceptBut').disabled = true;
+                break;
+            case 'Delivered':
+                document.getElementById('delivBut').disabled = true;
+                break;
+            case 'Canceled':
+                document.getElementById('canslBut').disabled = true;
+                break;
+        }
+    </script>
+
+}
+
+
+

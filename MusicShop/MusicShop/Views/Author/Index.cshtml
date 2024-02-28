@@ -1,0 +1,44 @@
+﻿@model List<Author>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1" style="width: 15%;"> </div>
+        <div class="item2" style="width: 70%;">
+            <div style="margin-top:10px">
+                <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> Authors
+
+            </div>
+            <div style="margin-left:47%; margin-top:25px;  font-weight:bold; font-size:25px; letter-spacing:1px;">Authors</div>
+            <div class="productContainer" style="width:100%;">
+            @foreach (var item in Model)
+            {
+                <partial name="_IndividualAuthor" model="item" />
+
+            }
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="item3" style="width: 15%;"></div>
+    </section>
+    
+</body>
+</html>
+
+@section scripts{
+    <script></script>
+
+}
+
+

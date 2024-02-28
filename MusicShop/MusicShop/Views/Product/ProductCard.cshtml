@@ -1,0 +1,205 @@
+﻿@model Product 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ProductCard.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1"></div>
+        <div class="item2">
+            <div style="display:flex;">
+
+                <div style="margin-right:20px">
+                    <div>
+                        <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> <a asp-action="Index" class="history_links" asp-controller="Product">Collections</a>  <img class="chevron" src="~/images/chevron-right.svg" />
+                        <a asp-action="Index" class="history_links" asp-controller="Product" asp-route-currentCollection="@Model.Collection">@Model.Collection</a>  <img class="chevron" src="~/images/chevron-right.svg" /> <span class="history_links">@Model.Name</span>
+                    </div>           
+
+                    <img height="470" width="510" style="margin: 10px" src="@Url.Content(WC.ImagePath + Model.Image)" />
+               
+                </div>
+
+                <div >
+                    <div class="productName">@Model.Name</div>
+                    <div class="descValue"><span class="descOpt">Collection:</span> @Model.Collection</div>
+                    <div class="descValue"><span class="descOpt">Count:</span> @Model.Count</div>
+                    <div class="descValue"><span class="descOpt">Vendor:</span> Records</div>
+                    <div class="price">$@Model.Price</div>
+
+                    @if (!BDWorks.IsAdmin)
+                    {
+                        
+                        <form asp-action="AddProductToBasket" asp-route-id="@Model.Id" method="post" asp-controller="Basket">
+                            <button class="shopButt" id="zerobutt">
+                                ADD TO CART
+                            </button>
+                        </form>
+
+                        <form asp-action="Reserve" asp-route-id="@Model.Id" method="post" asp-controller="Reserve">
+
+                            <button class="shopButt" style="margin-top:15px" id="zerobutt">
+                                RESERVE
+                            </button>
+                            @if (ViewBag.Message != null)
+                            {
+                                <div style="color:red">@ViewBag.Message</div>
+                            }
+                        </form>
+                    }
+
+                    else
+                    {
+                        <form asp-action="Delete" asp-controller="Product" asp-route-id="@Model.Id" method="post">
+                            <button class="shopButt" style="margin-top:15px" onclick="return submitDel();">
+                                DELETE
+                            </button>
+                            @if (ViewBag.Message != null)
+                            {
+                                <div style="color:red">@ViewBag.Message</div>
+                            }
+                        </form>
+
+                        <form asp-action="Edit" method="get" asp-controller="Product" asp-route-id="@Model.Id">
+                            <button class="shopButt" style="margin-top:15px">
+                                EDIT
+                            </button>
+                        </form>
+                    }
+
+                    <form asp-action="Index" asp-controller="Product">
+                        <button class="shopButt" style="margin-top:15px">
+                            BACK
+                        </button>
+                    </form>
+
+                  
+                </div>
+            </div>
+
+
+            <button class="switchButt" id="button1" onclick="openbox('box1',1);">DESCRIPTION</button>
+            <button class="switchButt" id="button2" onclick="openbox('box2',2);">DELIVERY</button>
+
+            <div class="block-of-text" id="box1" style="display: none;">
+                @Model.Description
+
+                <br />
+                <br />
+
+                <br />
+
+                <br />
+
+                <br />
+                <br />
+
+
+
+            </div>
+            <div class="block-of-text" id="box2" style="display: none;">
+                HOW MUCH DOES DELIVERY COST?
+                Irish deliveries may be made any time between 8:00am and 8:00pm. Please try to ensure that there is access to the delivery property during this window, however if you are not at home, our couriers will attempt delivery to a secure location or leave your parcel with a neighbour.
+
+                <table >
+                    <tr>
+                        <th>
+                            Delivery Options
+                        </th>
+                        <th>Delivery Times</th>
+                        <th>Delivery Costs</th>
+                    </tr>
+                    <tr>
+                        <td>Standard</td>
+                        <td>3 - 5 working days (if ordered before 8pm)</td>
+                        <td>$2.00</td>
+                    </tr>
+                    <tr>
+                        <td>Ireland Next Day</td>
+                        <td>Order up to midnight Monday to Thursday, 8pm Friday for next working day delivery to Dublin (postcode areas 1 to 24). For the rest of Ireland order up to 1pm Monday to Thursday or 8pm Friday for next working day delivery.</td>
+                        <td>$6.00</td>
+                    </tr>
+                    <tr>
+                        <td>PLT Royalty (Unlimited Next Day Delivery For A Year)</td>
+                        <td>Orders up to midnight Monday - Thursday or 8pm Friday for Dublin (Postcodes 1 to 24) and for the rest of Ireland order before 1pm Monday to Thursday and 8pm Friday to guarantee Next Day delivery. There is no limit on how many times you order.</td>
+                        <td>$9.99</td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <br />
+
+                <br />
+                <br />
+            </div>
+            
+
+            <div class="interes">YOUR MAY ALSO BE INTERESTED IN FOLLOWING PRODUCT</div>
+
+            <div style="display:flex; justify-content:space-around;">
+                @foreach (var item in await BDWorks.GetNRandomProducts(4))
+                {
+                    <partial name="_IndividualProductCard" model="item" />
+                }
+            </div>
+        </div>
+        <div class="item3"></div>
+
+       
+    </section>
+    
+</body>
+</html>
+
+@section Scripts{
+    <script>
+        function openbox(id, selectedButton) {
+            if (selectedButton === 1) {
+                document.getElementById("button1").disabled = true;
+                document.getElementById("button2").disabled = false;
+            } 
+            else {
+                document.getElementById("button2").disabled = true;
+                document.getElementById("button1").disabled = false;
+            }
+            var all = document.querySelectorAll(".block-of-text");
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].id == id) {
+                    all[i].style.display = (all[i].style.display == 'none') ? 'block' : 'none';
+                } else {
+                    all[i].style.display = 'none';
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("button1").click();
+        });
+
+        function submitDel() {
+            if (confirm("Are you sure?")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (@Model.Count <= 0) {
+            var buttons = document.querySelectorAll('#zerobutt');
+
+            // Проходимся по каждой кнопке и добавляем обработчик события "click"
+            buttons.forEach(function (button) {
+                button.disabled = true; // делаем кнопку неактивной
+                button.addEventListener('click', function () {
+                    alert("Button with id 'zerobutt' is disabled!");
+                });
+            });
+        }
+      
+    </script>
+
+}
+
+

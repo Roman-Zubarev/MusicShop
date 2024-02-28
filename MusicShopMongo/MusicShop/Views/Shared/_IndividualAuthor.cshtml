@@ -1,0 +1,20 @@
+﻿@model MusicShop.Models.Author
+    <head>
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    </head>
+    
+    <div style="margin: 20px 0 0 24px;  width:300px">
+    <a asp-action="AuthorCard" asp-controller="Author" asp-route-id="@Model.Id">
+        <div id="tekst_sverhu_kartinki">
+            <img width="270" height="255" class="card-img" src="@Url.Content(@WC.ImagePath + Model.Image)" alt="0">
+            <div class="tekst_sverhu_kartink">
+                <h2 class="top_text2">@Model.Name</h2>
+            </div>
+        </div>
+    </a>
+
+   
+    </div>
+
+
+

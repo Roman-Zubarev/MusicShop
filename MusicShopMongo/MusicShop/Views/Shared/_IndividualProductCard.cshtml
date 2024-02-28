@@ -1,0 +1,32 @@
+﻿@model MusicShop.Models.Product
+
+    <style>
+        *{
+            font-family: 'Montserrat', sans-serif;
+        }
+        a{
+            text-decoration:none;
+            color:black;
+        }
+        .card-img:hover{
+            transform: scale(1.05);
+   
+        } 
+    </style>
+    <div style="margin: 17px 0 0 15px;  width:250px">
+    <a asp-action="ProductCard" asp-controller="Product" asp-route-id="@Model.Id"> 
+        <img src="@Url.Content(@WC.ImagePath + @Model.Image)" class="card-img" height="250" width="250" alt="Card image cap">
+        <div>
+            <div style="font-size:20px;">@Model.Name</div>
+            <div style="font-size:23px; font-weight:600">$@Model.Price</div>
+        </div>
+        <div >
+            <div class="col-12 p-1">
+                <a asp-action="Details" asp-route-id="@Model.Id"  style="text-decoration:none; font-size:18px; color:black"><img src="~/images/cart-fill.svg" style="margin-right:5px; height:13px"/>Add to cart</a>
+            </div>
+        </div>
+    </a>
+    </div>
+
+
+

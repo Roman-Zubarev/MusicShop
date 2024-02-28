@@ -1,0 +1,112 @@
+﻿@model MusicShop.Models.ViewModels.ProductVM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1"> </div>
+        <div class="item2">
+
+            <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> <a asp-action="Index" class="history_links" asp-controller="Product">Collections</a>
+            @if (!String.IsNullOrEmpty(Model.CurrentCollection))
+            {
+                <span class="history_links"> <img src="~/images/chevron-right.svg" class="chevron" /> @Model.CurrentCollection</span>
+            }
+            <p style="margin-left:30px; font-size:22px; letter-spacing:1px; font-weight:bold; font-family: 'Montserrat', sans-serif;">Collections</p>
+
+            @if (Model.Collections.Count() > 0)
+            {
+                <div style="display:flex; flex-direction:column">
+                    @foreach (var item in Model.Collections)
+                    {
+                        <a asp-action="Index" asp-controller="Product" asp-route-currentCollection="@item" class="collection_item">@item</a>
+                    }
+                </div>
+                
+            }
+            <div id="tekst_sverhu_kartinki">
+                <img height="360" width="282" style="margin: 20px" src="~/images/collections2.jpg" />
+                <div class="tekst_sverhu_kartinki">
+                    <h2 class="top_text">See Also Vinyl Players</h2>
+                </div>
+            </div>
+        </div>
+        <div class="item3">
+
+            @if (!String.IsNullOrEmpty(Model.CurrentCollection))
+            {
+                <div id="tekst_sverhu_kartinki2" >
+                    <img width="800" height="300" style="margin: 20px" src="@Url.Content(Model.RandomImagePath)" alt="0">
+                    <div class="tekst_sverhu_kartinki2">
+                        <h2 class="top_text2">@Model.CurrentCollection</h2>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p style="margin-left:40%; margin-top:38px;  font-weight:bold; font-size:25px; letter-spacing:1px; font-family: 'Montserrat', sans-serif;">Products</p>
+            }
+
+            <div>
+                @*          <div style="display:inline-block;margin-left:30px">Sort by:</div>
+               <div class="dropdown">
+                    <button class="dropbtn">Выпадающее</button>
+                    <div class="dropdown-content">
+                        <a href="#">Ссылка 1</a>
+                        <a href="#">Ссылка 2</a>
+                        <a href="#">Ссылка 3</a>
+                    </div>
+                </div> *@
+
+
+@*                 <select id="dropdown" onchange="myFunction()">
+                    <option value="priceDecr">1</option>
+                    <option value="priceInc">2</option>
+                    <option>Price: hight to low </option>
+                </select>
+
+                <a asp-action="Index" asp-controller="Product" asp-route-currentCollection="@Model.CurrentCollection" asp-route-filterOption="priceInc" class="collection_item">test</a> *@
+            </div>
+            <div class="productContainer">
+                @if (Model.Products.Count() > 0)
+                {           
+                    @foreach (var prod in Model.Products)
+                    {                    
+                            <partial name="_IndividualProductCard" model="prod" />
+                    }          
+                } 
+            </div>
+        </div>
+        <div class="item4"></div>
+       
+    </section>
+    
+</body>
+</html>
+
+@section scripts{
+@*     <script>
+        function myFunction() {
+
+            var selectedOption = document.getElementById("dropdown").value;
+            console.log(selectedOption);
+
+
+            fetch('/Product', selectedOption)
+                .then(response => response.json())
+                .then(data => {
+                    // Обрабатываем полученные данные
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Обрабатываем ошибку
+                    console.error('Error:', error);
+                });
+
+        }
+    </script> *@
+}
+

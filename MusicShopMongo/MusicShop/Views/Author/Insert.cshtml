@@ -1,0 +1,131 @@
+﻿@model Author
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ProductCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/inputs.css" asp-append-version="true" />
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1"></div>
+        <div class="item2">
+            <div style="display:flex;">
+
+                <div style="margin-right:20px">
+                    <img height="470" width="510" id="image" style="margin: 10px" src="" />
+
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    <input asp-for="Id" hidden />
+                    <div>
+                        <div>
+                            <div class="col-4">
+                                <label class="descOpt" asp-for="Name"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Name" />
+                                <span asp-validation-for="Name" style="color:red;"></span>
+
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="col-4">
+                                <label class="descOpt" asp-for="Country"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Country" />
+                                <span asp-validation-for="Country" style="color:red;"></span>
+
+                            </div>
+
+                        </div>
+                      
+
+                        <div>
+                            <div style="margin-bottom:10px">
+                                <label class="descOpt" asp-for="Biography"></label>
+                            </div>
+                            <div>
+                                <textarea asp-for="Biography" class="textarr"></textarea>
+                                <span asp-validation-for="Biography" style="color:red;"></span>
+
+                            </div>
+
+                        </div>
+
+                        <div style="margin-bottom:10px">
+                            <div class="descOpt" style="margin-bottom:10px">
+                                Image
+                            </div>
+                            <div>
+
+                                <label class="input-file">
+                                    <input type="file" name="file" id="fileInput">
+                                    <span>CHOOSE FILE</span>
+                                </label>
+
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="submit" class="shopButt" style="margin-top:15px" value="INSERT" /> <br />
+
+                            <button class="shopButt" style="margin-top:20px">
+                                <a asp-action="Index" class="backLink" asp-controller="Home">
+                                    BACK
+                                </a>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+        <div class="item3"></div>
+
+
+    </section>
+
+</body>
+</html>
+
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+
+            // Проверяем, что выбранный файл является jpg или png
+            if (file.type === 'image/jpeg' || file.type === 'image/png') {
+                reader.onload = function (e) {
+                    document.getElementById('image').src = e.target.result;
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                alert('Пожалуйста, выберите файл в формате jpg или png');
+                document.getElementById('fileInput').value = ''; // Очищаем поле выбора файла
+            }
+        });
+
+        $('.input-file input[type=file]').on('change', function () {
+            let file = this.files[0];
+            $(this).next().html(file.name);
+        });
+
+    </script>
+
+}
+

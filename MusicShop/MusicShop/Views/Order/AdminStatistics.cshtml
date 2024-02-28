@@ -1,0 +1,173 @@
+﻿@model MusicShop.Models.ViewModels.OrderVM
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/AuthorIndividualCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Registration.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
+
+
+</head>
+<body>
+    <section class="flex-start">
+        <div class="item1" style="width: 5%;"><div hidden></div> </div>
+        <div class="item2" style="width: 90%; ">
+
+
+            <div style="margin:10px 0">
+                <a asp-action="Index" class="history_links" asp-controller="Home">Home</a> <img class="chevron" src="~/images/chevron-right.svg" /> Orders
+            </div>
+            <div style="display:flex">
+                <form asp-action="AdminStatistics" asp-controller="Order" asp-route-status="Accepted"  method="post">
+                    <input type="text" asp-for="MinDate" id="MinDate" hidden />
+                    <input type="text" asp-for="MaxDate" id="MaxDate" hidden />
+                    <button id="acceptBut" type="submit" class="registerButt" style="margin:15px 0 0 0; width:100px; ">Accepted</button>
+                </form>
+
+                <form asp-action="AdminStatistics" asp-controller="Order"  asp-route-status="Delivered" method="post">
+
+                    <input type="text" asp-for="MinDate" id="MinDate" hidden />
+                    <input type="text" asp-for="MaxDate" id="MaxDate" hidden />
+                    <button id="delivBut" type="submit" class="registerButt" style="margin:15px 0 0 15px; width:100px">Delivered</button>
+                </form>
+
+                <form asp-action="AdminStatistics" asp-controller="Order"  asp-route-status="Canceled" method="post">
+                    <input type="text" asp-for="MinDate" id="MinDate" hidden />
+                    <input type="text" asp-for="MaxDate" id="MaxDate" hidden />
+                    <button id="canslBut" type="submit" class="registerButt" style="margin:15px 0 0 15px; width:100px">Canceled</button>
+                </form>
+            </div>
+            <div style="margin:15px 0 20px  47%; font-weight:bold; font-size:25px; letter-spacing:1px;">Orders</div>
+
+            <div style="display:flex">
+                <form asp-action="AdminStatistics" asp-route-status="@Model.status" asp-controller="Order" style="margin-bottom:15px">
+                    <input type="text" id="statusHiddenField"  asp-for="status"  hidden />  
+                    <input type="date"  asp-for="MinDate" id="MinDate"  />
+                    <input type="date" asp-for="MaxDate" id="MaxDate" />
+
+                    <button type="submit" class="registerButt" style="margin:0; width:100px">Show</button>
+
+                </form>
+            </div>
+            <div>
+
+                <table border="1" style=" border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                        <th>User Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address  </th>
+                        <th>Postal Code </th>
+                        <th>City</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                        <th>Delivery Method</th>
+                        <th>Product Id</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Count</th>
+                        <th>Total Price</th>
+                        <th>Save</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.result)
+                    {
+                        @foreach (var order in item)
+                        {
+                            <tr>
+                                <form asp-action="UpdateDeliveryStatus" asp-controller="Order"  method="post">
+                                    <input asp-for="@order.Id" hidden/>
+                                    <td style="text-align:center">@order.UserId</td>
+                                    <td>@order.FirstName</td>
+                                    <td>@order.LastName</td>
+                                    <td>@order.Address</td>
+                                    <td style="text-align:center">@order.PostalCode</td>
+                                    <td>@order.City</td>
+                                    <td>@order.OrderDate</td>
+                                    <td>
+                                        <select style="border:none"  name="status" asp-for="@order.Status">
+                                            <option value="Accepted">Accepted</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="Canceled">Canceled</option>
+
+                                        </select>
+                                    </td>
+                                    <td>@order.DeliveryMethod</td>
+                                    <td style="text-align:center"><a asp-action="ProductCard" class="history_links" asp-controller="Product" asp-route-id="@order.Product.Id"> @order.Product.Id </a></td>
+                                    <td>@order.Product.Name</td>
+                                    <td style="text-align:center">@order.Product.Price</td>
+                                    @{
+                                        double a = @order.Product.Price * @order.Count;
+                                    }
+                                    <td style="text-align:center">@order.Count</td>
+                                    <td style="text-align:center">@a</td>
+                                    <td> 
+                                        <button type="submit" class="registerButt" style="margin:0; width:100px">Save</button>
+                                    </td>
+
+                                </form>
+                            </tr>
+                        }
+                        <tr style="height:20px"></tr>
+                    }
+                    </tbody>
+                </table>
+
+              
+
+            </div>
+        </div>
+        <div class="item3" style="width: 5%;" id="zalupa"></div>
+    </section>
+    
+</body>
+</html>
+
+@section scripts{
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+
+
+
+
+        var status = urlParams.get('status');
+
+        if (status != null) {
+            document.getElementById('statusHiddenField').value = status;
+        }
+
+        switch (status) {
+            case 'Accepted':
+                document.getElementById('acceptBut').disabled = true;
+                break;
+            case 'Delivered':
+                document.getElementById('delivBut').disabled = true;
+                break;
+            case 'Canceled':
+                document.getElementById('canslBut').disabled = true;
+                break;
+        }
+
+
+
+        var currentDate = new Date().toISOString().split('T')[0];
+        var dateInputs = document.querySelectorAll('input[type="date"]');
+        dateInputs.forEach(function (input) {
+            input.setAttribute('max', currentDate);
+        });
+
+
+
+    </script>
+
+}
+
+
+
+
